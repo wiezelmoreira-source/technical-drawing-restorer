@@ -1,0 +1,67 @@
+/* Variáveis de Cores - Tema Profissional Escuro (Estilo CAD) */
+:root {
+    --bg-color: #1e1e1e;
+    --panel-color: #252526;
+    --text-color: #cccccc;
+    --accent-color: #007acc;
+    --border-color: #333333;
+    --canvas-bg: #111111;
+}
+
+/* Reset básico (padrão de engenharia de software) */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    overflow: hidden; /* Evita barras de rolagem desnecessárias */
+}
+
+/* Barra superior do software */
+header {
+    background-color: var(--panel-color);
+    padding: 15px 20px;
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header h1 {
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: #ffffff;
+    letter-spacing: 1px;
+}
+
+header p {
+    font-size: 0.9rem;
+    color: #ffcc00; /* Destaque em amarelo para o Engineering Mode */
+}
+
+/* Área de trabalho central */
+main {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    background-color: var(--bg-color);
+}
+
+/* A Prancheta Virtual onde o desenho vai aparecer */
+#canvas-restaurador {
+    background-color: var(--canvas-bg);
+    border: 1px solid #444444;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+    width: 800px;
+    height: 600px;
+}
