@@ -1,14 +1,16 @@
 document.addEventListener('DOMContentLoaded', () => {
     const inputArquivo = document.getElementById('input-arquivo');
+    const btnSalvar = document.getElementById('btn-salvar');
     const canvas = document.getElementById('canvas-restaurador');
     const ctx = canvas.getContext('2d');
 
-    // Inicialização básica
+    // Inicialização da tela
     canvas.width = 600;
     canvas.height = 400;
     ctx.fillStyle = '#222222';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
+    // Lógica de Carregamento (PDF ou Imagem)
     inputArquivo.addEventListener('change', async (e) => {
         const file = e.target.files[0];
         if (!file) return;
@@ -41,6 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    // Filtro de Contraste
     function aplicarRestauracao() {
         const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
         const data = imageData.data;
@@ -51,4 +54,12 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         ctx.putImageData(imageData, 0, 0);
     }
+
+    // Função de Salvar
+    btnSalvar.addEventListener('click', () => {
+        const link = document.createElement('a');
+        link.download = 'desenho-restaurado.png';
+        link.href = canvas.toDataURL('image/png');
+        link.click();
+    });
 });
