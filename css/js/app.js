@@ -11,9 +11,9 @@ document.addEventListener('DOMContentLoaded', () => {
     ctx.fillStyle = '#888888';
     ctx.font = '14px Segoe UI';
     ctx.textAlign = 'center';
-    ctx.fillText('Nenhum desenho carregado. Clique em "Abrir Desenho".', canvas.width / 2, canvas.height / 2);
+    ctx.fillText('Nenhum desenho carregado. Selecione um arquivo acima.', canvas.width / 2, canvas.height / 2);
 
-    // Manipula a imagem selecionada diretamente pelo input nativo
+    // Manipula a imagem selecionada
     inputArquivo.addEventListener('change', (evento) => {
         const arquivo = evento.target.files[0];
         if (!arquivo) return;
