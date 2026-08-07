@@ -3,17 +3,18 @@ document.addEventListener('DOMContentLoaded', () => {
     const canvas = document.getElementById('canvas-restaurador');
     const ctx = canvas.getContext('2d');
 
-    // Configuração inicial da prancheta
-    canvas.width = 600;
-    canvas.height = 400;
-    ctx.fillStyle = '#222222';
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-    ctx.fillStyle = '#888888';
-    ctx.font = '14px Segoe UI';
-    ctx.textAlign = 'center';
-    ctx.fillText('Nenhum desenho carregado. Selecione um arquivo acima.', canvas.width / 2, canvas.height / 2);
+    // Inicialização da tela
+    function limparCanvas() {
+        canvas.width = 600;
+        canvas.height = 400;
+        ctx.fillStyle = '#222222';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        ctx.fillStyle = '#888888';
+        ctx.textAlign = 'center';
+        ctx.fillText('Desenho pronto para restauração.', canvas.width / 2, canvas.height / 2);
+    }
+    limparCanvas();
 
-    // Manipula a imagem selecionada
     inputArquivo.addEventListener('change', (evento) => {
         const arquivo = evento.target.files[0];
         if (!arquivo) return;
@@ -25,10 +26,26 @@ document.addEventListener('DOMContentLoaded', () => {
                 canvas.width = imagem.width;
                 canvas.height = imagem.height;
                 ctx.drawImage(imagem, 0, 0);
-                console.log("Desenho técnico carregado com sucesso.");
+
+                // Aplicar restauração de contraste
+                aplicarRestauracao();
             }
             imagem.src = e.target.result;
         }
         leitor.readAsDataURL(arquivo);
     });
+
+    function aplicarRestauracao() {
+        const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+        const data = imageData.data;
+        const limiar = 128; // Define o que é linha (preto) e o que é fundo (branco)
+
+        for (let i = 0; i < data.length; i += 4) {
+            let media = (data[i] + data[i + 1] + data[i + 2]) / 3;
+            let cor = media > limiar ? 255 : 0;
+            data[i] = data[i + 1] = data[i + 2] = cor;
+        }
+        ctx.putImageData(imageData, 0, 0);
+        console.log("Restauração geométrica aplicada com sucesso.");
+    }
 });
