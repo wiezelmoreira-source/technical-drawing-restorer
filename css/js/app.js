@@ -1,6 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
     const inputArquivo = document.getElementById('input-arquivo');
-    const btnCarregar = document.getElementById('btn-carregar');
     const canvas = document.getElementById('canvas-restaurador');
     const ctx = canvas.getContext('2d');
 
@@ -14,12 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
     ctx.textAlign = 'center';
     ctx.fillText('Nenhum desenho carregado. Clique em "Abrir Desenho".', canvas.width / 2, canvas.height / 2);
 
-    // Garante o disparo do seletor de arquivos
-    btnCarregar.onclick = function() {
-        inputArquivo.click();
-    };
-
-    // Manipula a imagem selecionada
+    // Manipula a imagem selecionada diretamente pelo input nativo
     inputArquivo.addEventListener('change', (evento) => {
         const arquivo = evento.target.files[0];
         if (!arquivo) return;

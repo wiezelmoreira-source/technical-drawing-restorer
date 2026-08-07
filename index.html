@@ -11,21 +11,21 @@
     <header>
         <h1>Technical Drawing Restorer</h1>
         <div class="controls">
-            <!-- Botão para carregar o desenho técnico -->
+            <!-- Label que funciona diretamente como o botão de upload -->
+            <label for="input-arquivo" class="btn-primary" style="cursor: pointer;">
+                📁 Abrir Desenho (PNG/JPG)
+            </label>
             <input type="file" id="input-arquivo" accept="image/png, image/jpeg" style="display: none;">
-            <button id="btn-carregar" class="btn-primary">📁 Abrir Desenho (PNG/JPG)</button>
         </div>
         <p>Engineering Mode: <strong style="color: #00ffcc;">ATIVADO</strong></p>
     </header>
 
     <main>
-        <!-- A Prancheta Virtual onde o desenho será renderizado -->
         <div class="canvas-container">
             <canvas id="canvas-restaurador"></canvas>
         </div>
     </main>
 
-    <!-- O "cérebro" do software -->
     <script src="js/app.js"></script>
 </body>
 </html>
