@@ -5,14 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Technical Drawing Restorer</title>
     <link rel="stylesheet" href="css/style.css">
+    
+    <!-- Biblioteca PDF.js para leitura e conversão de PDFs -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+    <script>
+        pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+    </script>
 </head>
 <body>
     
     <header>
         <h1>Technical Drawing Restorer</h1>
         <div class="controls">
-            <!-- Botão padrão e visível para garantir o disparo -->
-            <input type="file" id="input-arquivo" accept="image/png, image/jpeg">
+            <!-- Input atualizado para aceitar PNG, JPG e PDF -->
+            <input type="file" id="input-arquivo" accept="image/png, image/jpeg, application/pdf">
         </div>
         <p>Engineering Mode: <strong style="color: #00ffcc;">ATIVADO</strong></p>
     </header>
